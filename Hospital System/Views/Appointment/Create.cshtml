@@ -1,0 +1,82 @@
+﻿@model AppointmentCreateViewModel
+
+@{
+    ViewData["Title"] = "Book Appointment";
+    var minDate = DateTime.Today.ToString("yyyy-MM-dd");
+}
+
+<div class="container py-5" style="max-width:650px">
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
+            <h2 class="mb-4">Book Appointment</h2>
+
+            <div class="alert alert-light border">
+                <strong>@Model.DoctorName</strong>
+                <div class="text-muted">@Model.Specialization</div>
+            </div>
+
+            <form asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" asp-for="DoctorId" />
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="PatientName"
+                           class="form-label">Patient Name</label>
+
+                    <input asp-for="PatientName" class="form-control" />
+
+                    <span asp-validation-for="PatientName"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AppointmentDate"
+                           class="form-label">Date</label>
+
+                    <input asp-for="AppointmentDate"
+                           type="date"
+                           min="@minDate"
+                           class="form-control" />
+
+                    <span asp-validation-for="AppointmentDate"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AppointmentTime"
+                           class="form-label">Time</label>
+
+                    <select asp-for="AppointmentTime" class="form-select">
+                        @for (int hour = 9; hour <= 16; hour++)
+                        {
+                            for (int minute = 0; minute < 60; minute += 30)
+                            {
+                                if (hour < 16 || minute == 30)
+                                {
+                                    var time = $"{hour:00}:{minute:00}";
+
+                                    <option value="@time">@time</option>
+                                }
+                            }
+                        }
+                    </select>
+
+                    <span asp-validation-for="AppointmentTime"
+                          class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    Confirm Appointment
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

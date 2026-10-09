@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Doctor>
+
+@{
+    ViewData["Title"] = "Our Doctors";
+}
+
+<div class="container py-5 doctor-page">
+
+    <!-- Page Header -->
+    <div class="doctor-header mb-5">
+        <span class="doctor-label">HEALTHCARE & WELLNESS</span>
+        <h1>Meet Our Doctors</h1>
+        <p>
+            Find the right specialist and book your appointment easily.
+        </p>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="search-panel mb-5">
+        <form method="get" class="row g-3 align-items-end">
+
+            <div class="col-md-5">
+                <label class="form-label">Doctor Name</label>
+                <input type="text"
+                       name="name"
+                       value="@ViewBag.Name"
+                       class="form-control"
+                       placeholder="Search by doctor name..." />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Specialization</label>
+                <select name="specialization" class="form-select">
+                    <option value="">All Specializations</option>
+
+                    @foreach (var item in ViewBag.Specializations)
+                    {
+                        <option value="@item"
+                                selected="@(ViewBag.Specialization == item)">
+                            @item
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-3 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-grow-1">
+                    <i class="bi bi-search"></i> Search
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-outline-secondary">
+                    Reset
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="row g-4">
+
+        @foreach (var doctor in Model)
+        {
+            <div class="col-sm-6 col-lg-4 col-xl-3">
+
+                <div class="card doctor-card h-100">
+
+                    <div class="doctor-image-wrapper">
+                        <img src="@doctor.ImageUrl"
+                             class="card-img-top doctor-image"
+                             alt="Photo of @doctor.Name"
+                             loading="lazy" />
+                    </div>
+
+                    <div class="card-body d-flex flex-column">
+
+                        <span class="specialty-badge">
+                            @doctor.Specialization
+                        </span>
+
+                        <h5 class="card-title mt-3">
+                            Dr. @doctor.Name
+                        </h5>
+
+                        <p class="doctor-description">
+                            Explore available appointments
+                            with this specialist.
+                        </p>
+
+                        <a asp-controller="Appointment"
+                           asp-action="Create"
+                           asp-route-doctorId="@doctor.Id"
+                           class="btn btn-book mt-auto">
+                            Book Appointment
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+    @if (ViewBag.TotalPages > 1)
+    {
+        <nav class="mt-5" aria-label="Doctor pages">
+            <ul class="pagination justify-content-center">
+
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-page="@i"
+                           asp-route-name="@ViewBag.Name"
+                           asp-route-specialization="@ViewBag.Specialization">
+                            @i
+                        </a>
+
+                    </li>
+                }
+
+            </ul>
+        </nav>
+    }
+
+</div>

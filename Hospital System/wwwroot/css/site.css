@@ -1,0 +1,225 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* ===== Doctor Page ===== */
+
+.doctor-page {
+    color: #20364a;
+}
+
+.doctor-header {
+    padding: 35px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #e8f5ff, #f7fbff);
+    border: 1px solid #e0eef8;
+}
+
+.doctor-label {
+    display: inline-block;
+    color: #287bb5;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.doctor-header h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 750;
+    color: #174a72;
+    margin-bottom: 12px;
+}
+
+.doctor-header p {
+    color: #637b8e;
+    margin-bottom: 0;
+}
+
+/* ===== Search Panel ===== */
+
+.search-panel {
+    background: #ffffff;
+    border: 1px solid #e5edf4;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 5px 20px rgba(30, 70, 100, 0.05);
+}
+
+    .search-panel .form-label {
+        color: #334e68;
+        font-weight: 600;
+    }
+
+    .search-panel .form-control,
+    .search-panel .form-select {
+        min-height: 46px;
+        border-radius: 10px;
+        border-color: #dce6ee;
+    }
+
+        .search-panel .form-control:focus,
+        .search-panel .form-select:focus {
+            border-color: #58a6d8;
+            box-shadow: 0 0 0 3px rgba(40, 123, 181, 0.12);
+        }
+
+/* ===== Doctor Cards ===== */
+
+.doctor-card {
+    border: 1px solid #e8eef3;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 5px 18px rgba(30, 70, 100, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .doctor-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(30, 70, 100, 0.13);
+    }
+
+.doctor-image-wrapper {
+    height: 230px;
+    overflow: hidden;
+    background: #edf5fa;
+}
+
+.doctor-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.doctor-card:hover .doctor-image {
+    transform: scale(1.04);
+}
+
+.doctor-card .card-body {
+    padding: 22px;
+}
+
+.specialty-badge {
+    align-self: flex-start;
+    background: #e8f5ff;
+    color: #2474a6;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.doctor-card .card-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #203d55;
+}
+
+.doctor-description {
+    color: #788b9b;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* ===== Buttons ===== */
+
+.btn-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    background: #287bb5;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+    .btn-book:hover {
+        background: #185d8d;
+        color: #ffffff;
+    }
+
+.doctor-page .btn-primary {
+    background: #287bb5;
+    border-color: #287bb5;
+    border-radius: 10px;
+}
+
+.doctor-page .btn-outline-secondary {
+    border-radius: 10px;
+}
+
+/* ===== Pagination ===== */
+
+.doctor-page .page-link {
+    color: #287bb5;
+    border-color: #e0eaf2;
+    padding: 10px 15px;
+}
+
+.doctor-page .page-item.active .page-link {
+    background: #287bb5;
+    border-color: #287bb5;
+    color: #ffffff;
+}
+.home-bg {
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 20px;
+    border-radius: 24px;
+    background-image: url('/images/baby-blue-background-b2cto10qnq4qywnk.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 576px) {
+    .doctor-header {
+        padding: 24px;
+    }
+
+    .search-panel {
+        padding: 18px;
+    }
+
+    .doctor-image-wrapper {
+        height: 250px;
+    }
+}
